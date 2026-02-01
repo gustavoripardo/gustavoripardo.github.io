@@ -33,7 +33,7 @@ const fluxos = {
   explicacao_inicial: {
     falas: [
       "Certo! Primeiramente é importante falar que a avaliação familiar é utilizada em diferentes contextos para compreender como a familia se organiza, se desenvolve e funciona.",
-      "Um dos modelos mais usados para isso é um Modelo Calgary... O Modelo Calgary de Avaliação Familiar (MCAF) é uma metodologia desenvolvida por teóricos canadenses da Universidade de Calgary que permite compreender a familia em seu cotidiano, considerando não apenas o individuo, mas também suas relações, vinculos e contexto.",
+      "Um dos modelos mais usados para isso é o Modelo Calgary... O Modelo Calgary de Avaliação Familiar (MCAF) é uma metodologia\n desenvolvida por teóricos canadenses da Universidade de Calgary que permite compreender a familia em seu cotidiano,\n considerando não apenas o individuo, mas também suas relações, vinculos e contexto.",
       "O modelo oferece uma visão integral da familia como um sistema interligado em que cada membro influencia os demais. Além disso, auxilia no planejamento de cuidados de forma humanizada e sensível à cultura e às particularidades familiares, com aplicação em diferentes cenários, como atenção primária, hospitais e programas de saúde da familia.",
       "Para facilitar a avaliação, utiliza o genograma, que representa a estrutura familiar ao longo das gerações, e o ecomapa, que demonstra as relações da familia com a comunidade e os serviços.",
       "A análise é organizada em três eixos principais. Sobre qual deles você gostaria de saber mais?"
@@ -88,7 +88,7 @@ const fluxos = {
 
   /** EIXO ESTRUTURAL **/
   estrutural: {
-    texto: "Este eixo mostra como a família está organizada e quais fatores internos e externos influenciam sua dinâmica. Gostaria de saber mais sobre algum desses fluxos?",
+    texto: "Este eixo mostra como a família está organizada e quais fatores internos e externos influenciam sua dinâmica.\n Gostaria de saber mais sobre algum desses fatores?",
     opcoes: [
       {
         texto: "Interna",
@@ -122,7 +122,7 @@ const fluxos = {
         destino: "estrutural"
       },
       {
-        texto: "Sobre o que fala sobre a Externa?",
+        texto: "Sobre o que fala o fator externo?",
         tipo: "fluxo",
         destino: "estrutural_externa"
       },
@@ -162,12 +162,12 @@ const fluxos = {
         destino: "estrutural"
       },
       {
-        texto: "O que fala sobre a Externa?",
+        texto: "Sobre o que fala o fator externo?",
         tipo: "fluxo",
         destino: "estrutural_externa"
       },
       {
-        texto: "Queria saber sobre o Interno",
+        texto: "Queria saber sobre o fator interno",
         tipo: "fluxo",
         destino: "estrutural_interna"
       },
@@ -181,7 +181,7 @@ const fluxos = {
   desenvolvimento: {
     falas: [
       "O eixo do desenvolvimento foca na trajetória da família ao longo do tempo, considerando mudanças e adaptações.",
-      "Podemos dividir em três sub-textos, quais deles você gostaria de saber?",
+      "Podemos dividir em três sub tópicos, quais deles você gostaria de saber?",
     ],
     opcoes: [
       {
@@ -216,19 +216,19 @@ const fluxos = {
         destino: "desenvolvimento"
       },
       {
-        texto: "Sobre o que fala sobre a Tarefas?",
+        texto: "Sobre o que falam as tarefas?",
         tipo: "fluxo",
         destino: "desenvolvimento_tarefas"
       },
       {
-        texto: "Você havia falado sobre o Vínculos, não é?",
+        texto: "Você havia falado sobre os vínculos, não é?",
         tipo: "fluxo",
         destino: "desenvolvimento_vinculos"
       },
     ]
   },
   desenvolvimento_tarefas: {
-    texto: "Tarefas: responsabilidades e desafios de cada fase.",
+    texto: "Tarefas: São as responsabilidades e desafios de cada fase.",
     opcoes: [
       {
         texto: "Legal! Desejo voltar",
@@ -241,14 +241,14 @@ const fluxos = {
         destino: "desenvolvimento_estagios"
       },
       {
-        texto: "Você havia falado sobre o Vínculos, não é?",
+        texto: "Você havia falado sobre o vínculos, não é?",
         tipo: "fluxo",
         destino: "desenvolvimento_vinculos"
       },
     ]
   },
   desenvolvimento_vinculos: {
-    texto: "Vínculos: como os laços familiares se fortalecem ou se transformam ao longo das transições.",
+    texto: "Vínculos: É a forma como os laços familiares se fortalecem ou se transformam ao longo das transições.",
     opcoes: [
       {
         texto: "Legal! Desejo voltar",
@@ -283,64 +283,27 @@ const fluxos = {
   funcional: {
     falas: [
       "O eixo funcional mostra como a família funciona no dia a dia, tanto em aspectos práticos quanto emocionais.",
-      "Temos alguns exemplos como Instrumental e Expressiva. O que gostaria de saber?"
+      "Existem dois tipos de funcionamento como instrumental e expressivo",
+      "Instrumental: atividades cotidianas (alimentação, higiene, organização da casa).",
+      "Expressiva: comunicação verbal, não verbal e emocional; solução de problemas; papéis; influência e poder; crenças; alianças e uniões.",
     ],
     opcoes: [
       {
-        texto: "Instrumental",
-        tipo: "fluxo",
-        destino: "funcional_instrumental"
-      },
-      {
-        texto: "Expressiva",
-        tipo: "fluxo",
-        destino: "funcional_expressiva"
-      },
-      {
-        texto: "Quero conhecer as outras salas.",
+        texto: "Legal! Quero conhecer as outras salas.",
         tipo: "porta",
         destino: "explicacao_inicial_resumo",
         placa: "Recepçao"
       },
     ]
   },
-  funcional_instrumental: {
-    texto: "Instrumental: atividades cotidianas (alimentação, higiene, organização da casa).",
-    opcoes: [
-      {
-        texto: "Legal! Desejo voltar",
-        tipo: "fluxo",
-        destino: "funcional"
-      },
-      {
-        texto: "'Expressiva', fala sobre o que??",
-        tipo: "fluxo",
-        destino: "funcional_expressiva"
-      },
-    ]
-  },
-  funcional_expressiva: {
-    texto: "Expressiva: comunicação verbal, não verbal e emocional; solução de problemas; papéis; influência e poder; crenças; alianças e uniões.",
-    opcoes: [
-      {
-        texto: "Legal! Desejo voltar",
-        tipo: "fluxo",
-        destino: "funcional"
-      },
-      {
-        texto: "Queria saber sobre o Instrumental",
-        tipo: "fluxo",
-        destino: "funcional_instrumental"
-      },
-    ]
-  },
+
 
 };
 
 let fluxoAtual = "inicio";
 // fluxoAtual = "explicacao_inicial";
 // let fluxoAtual = "estrutural";
-fluxoAtual = 'bem_vindo';
+// fluxoAtual = 'bem_vindo';
 
 
 
@@ -806,6 +769,9 @@ setInterval(() => {
 
 let bracoInterval = null;
 
+
+
+// braco esquerdo
 function animarBraco(ativo) {
   const braco = document.getElementById("braco");
 
@@ -960,7 +926,7 @@ function resetarAFK() {
 
   afkTimeout = setTimeout(() => {
     ativarAFK();
-  }, 8000); // 8 segundos parado
+  }, 20000); // 20 segundos parado
 }
 
 function ativarAFK() {
@@ -1067,14 +1033,3 @@ function iniciarAFKPorta() {
 
 renderizarFluxo();
 
-
-
-/**
- * 
- * Todo: melhorar o css da enfermeira
- * mostrar caixa de dialogo em forma de balão
- * pular texto se clicar nele
- * botao pra remover todas as animacoes
- * bonus: efeito sonoro - porta abrindo, digitacao, IA falando o que esta sendo escrito
- * 
- */
