@@ -300,7 +300,7 @@ const fluxos = {
 
 };
 
-let fluxoAtual = "inicio";
+let fluxoAtual = "bem_vindo";
 // fluxoAtual = "explicacao_inicial";
 // let fluxoAtual = "estrutural";
 // fluxoAtual = 'bem_vindo';
