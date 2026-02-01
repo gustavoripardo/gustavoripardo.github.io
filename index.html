@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Experiência Interativa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="viewport">
+    <div class="corredor" id="corredor">
+
+      <!-- CENA PRINCIPAL (onde a enfermeira fala) -->
+      <section class="cena" id="fluxo">
+        <!-- <div class="enfermeira">👩‍⚕️</div> -->
+
+        <div class="enfermeira-container">
+          <svg id="enfermeiraSVG" viewBox="0 0 200 420">
+
+            <!-- Grupo Corpo (respiração) -->
+            <g id="corpo">
+
+              <!-- Corpo -->
+              <rect x="60" y="150" width="80" height="170" rx="25" fill="#ffffff" stroke="#222" stroke-width="3" />
+
+              <!-- Gola -->
+              <path d="M60 160 L100 200 L140 160" fill="none" stroke="#222" stroke-width="3" />
+
+            </g>
+
+            <!-- Cabeça -->
+            <g id="cabeca">
+
+              <circle cx="100" cy="95" r="45" fill="#f5c6a5" stroke="#222" stroke-width="3" />
+
+              <!-- Olhos -->
+              <g id="olhos">
+                <ellipse id="olhoE" cx="80" cy="90" rx="6" ry="6" fill="#111" />
+                <ellipse id="olhoD" cx="120" cy="90" rx="6" ry="6" fill="#111" />
+              </g>
+
+              <!-- Boca -->
+              <path id="boca" d="M85 115 Q100 130 115 115" stroke="#222" stroke-width="3" fill="transparent" />
+
+              <!-- Chapéu -->
+              <rect x="70" y="40" width="60" height="25" fill="white" stroke="#222" stroke-width="3" />
+              <rect x="95" y="30" width="10" height="25" fill="red" />
+
+            </g>
+
+            <!-- Braço direito (animável) -->
+            <g id="braco" transform="rotate(0 60 180)">
+              <rect x="20" y="160" width="40" height="25" rx="10" fill="#ffffff" stroke="#222" stroke-width="3" />
+            </g>
+
+            <!-- Braço esquerdo -->
+            <g id="bracoE" transform="rotate(0 140 180)">
+              <rect x="140" y="160" width="40" height="25" rx="10" fill="#ffffff" stroke="#222" stroke-width="3" />
+            </g>
+
+
+          </svg>
+        </div>
+
+        <div class="conteudo-direita">
+          <div id="mensagens"></div>
+          <div class="opcoes" id="opcoes"></div>
+        </div>
+
+      </section>
+
+      <!-- CENA PORTA -->
+      <section class="cena ambiente" id="porta">
+
+        <div class="placa" id="porta-label"></div>
+
+        <div class="porta" id="porta-visual">
+          <div class="folha esquerda">
+            <div class="macaneta">
+              <div class="haste"></div>
+            </div>
+          </div>
+
+          <div class="folha direita">
+            <div class="macaneta">
+              <div class="haste"></div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="aviso-porta" id="avisoPorta">
+          Toque na porta para entrar
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <div class="fade" id="fade"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

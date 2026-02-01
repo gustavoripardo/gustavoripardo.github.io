@@ -1,0 +1,685 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.corredor {
+  display: flex;
+  width: 200vw;
+  height: 100vh;
+  transition: transform 0.8s ease;
+}
+
+.cena {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  padding: 60px;
+  gap: 60px;
+  overflow-y: auto;
+}
+
+
+
+.ambiente {
+  background: #e2e8f0;
+}
+
+/* BALÃO */
+
+.balao {
+  background: #cccccc;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 600px;
+  position: relative;
+  transition: transform 0.1s ease;
+}
+
+
+.balao::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 15px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #cccccc;
+}
+
+
+.balao::after {
+  /* content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 40px;
+  border: 15px solid transparent;
+  border-top-color: gray; */
+
+  /* content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 12px 16px 12px;
+  border-style: solid;
+  border-color: transparent transparent #cccccc transparent; */
+
+  /* content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 20px;
+  background: white;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+}
+
+.balao p {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.balao.pulavel {
+  cursor: pointer;
+}
+
+.balao.pulavel:active {
+  transform: scale(0.97);
+}
+
+
+#mensagens {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+}
+
+.balao::before {
+  display: none;
+}
+
+.balao.com-seta::before {
+  display: block;
+}
+
+.balao.com-seta {
+  margin-top: 100px;
+}
+
+.pular-indicador {
+  position: absolute;
+  bottom: -22px;
+  right: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  animation: piscarIndicador 1s infinite;
+}
+
+@keyframes piscarIndicador {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* OPÇÕES */
+
+.opcoes {
+  margin-top: 20px;
+  max-width: 600px;
+}
+
+.opcoes button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.opcoes button.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.opcoes.afk button {
+  animation: chamarAtencao 1s ease-in-out infinite;
+}
+
+@keyframes chamarAtencao {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
+/* PORTA */
+
+#porta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  flex-direction: column;
+  padding: 0; /* importante */
+  perspective: 1000px;
+}
+
+#porta.ativo {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+
+.porta {
+  position: relative;
+  width: 140px;
+  height: 240px;
+  perspective: 1000px;
+  opacity: 0.6;
+  transition: 0.3s;
+
+  width: 220px;
+  height: 360px;
+  position: relative;
+
+  display: flex;
+  cursor: pointer;
+}
+
+.porta.ativa {
+  opacity: 1;
+  box-shadow: 0 0 20px #3b82f6;
+  cursor: pointer;
+}
+
+.placa {
+  margin-bottom: 25px;
+  background: #222;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+.folha {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: #60a5fa;
+  top: 0;
+  transition: transform 1s ease;
+
+  background: linear-gradient(145deg, #8c8c8c, #5f5f5f);
+  transition: transform 0.8s ease;
+  position: relative;
+}
+
+/* .folha::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: gold;
+  border-radius: 50%;
+  transform: translateY(-50%);
+} */
+
+
+.macaneta {
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff6b0, #d9a400 70%);
+  transform: translateY(-50%);
+  box-shadow:
+    inset -3px -3px 6px rgba(0,0,0,0.4),
+    0 3px 6px rgba(0,0,0,0.4);
+}
+
+/* Maçaneta esquerda (gira para baixo visualmente) */
+.folha.esquerda .macaneta.pressionada .haste {
+  animation: descerEsquerda 0.25s ease forwards;
+}
+
+/* Maçaneta direita (gira para baixo visualmente) */
+.folha.direita .macaneta.pressionada .haste {
+  animation: descerDireita 0.25s ease forwards;
+}
+
+@keyframes descerEsquerda {
+  0%   { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(-35deg); }
+}
+
+@keyframes descerDireita {
+  0%   { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(35deg); }
+}
+
+
+
+
+.folha.esquerda .macaneta {
+  right: 20px; /* fica na parte interna */
+}
+
+.folha.direita .macaneta {
+  left: 20px; /* parte interna espelhada */
+}
+
+.haste {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 6px;
+  background: linear-gradient(145deg, #f4c542, #c89b1e);
+  border-radius: 4px;
+  transform-origin: left center;
+  box-shadow: inset -2px -2px 3px rgba(0,0,0,0.3);
+}
+
+/* FOLHA ESQUERDA → haste aponta para fora (esquerda) */
+.folha.esquerda .haste {
+  right: 18px;
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: right center;
+}
+
+/* FOLHA DIREITA → haste aponta para fora (direita) */
+.folha.direita .haste {
+  left: 18px;
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: left center;
+}
+
+
+.folha.esquerda .macaneta.afk .haste {
+  animation: giraEsquerda 0.6s ease-in-out infinite alternate;
+}
+
+.folha.direita .macaneta.afk .haste {
+  animation: giraDireita 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes giraEsquerda {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(-25deg); }
+}
+
+@keyframes giraDireita {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(25deg); }
+}
+
+
+
+
+
+
+.porta.aberta .macaneta {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.6);
+}
+
+.folha.esquerda .macaneta.afk {
+  animation: empurraDireita 0.6s ease-in-out infinite alternate;
+}
+
+.folha.direita .macaneta.afk {
+  animation: empurraEsquerda 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes empurraDireita {
+  0% { transform: translateY(-50%) translateX(0); }
+  100% { transform: translateY(-50%) translateX(3px); }
+}
+
+@keyframes empurraEsquerda {
+  0% { transform: translateY(-50%) translateX(0); }
+  100% { transform: translateY(-50%) translateX(-3px); }
+}
+
+
+
+
+
+.haste {
+  position: absolute;
+  width: 28px;
+  height: 6px;
+  background: linear-gradient(145deg, #f4c542, #c89b1e);
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: left center;
+  border-radius: 3px;
+  box-shadow: inset -2px -2px 3px rgba(0,0,0,0.3);
+}
+
+
+.macaneta.afk .haste {
+  animation: girarAlavanca 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes girarAlavanca {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(25deg); }
+}
+
+
+
+
+.folha.esquerda::after {
+  right: 15px;
+}
+
+.folha.direita::after {
+  left: 15px;
+}
+
+.esquerda {
+  left: 0;
+  transform-origin: left;
+}
+
+.direita {
+  right: 0;
+  transform-origin: right;
+}
+
+/* .porta.aberta .esquerda {
+  transform: rotateY(-100deg);
+  transform-origin: left;
+}
+
+.porta.aberta .direita {
+  transform: rotateY(100deg);
+  transform-origin: right;
+} */
+
+
+.aviso-porta {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #555;
+  opacity: 0;
+}
+
+.aviso-porta.ativo {
+  animation: piscarAviso 1.2s ease-in-out infinite;
+}
+
+@keyframes piscarAviso {
+  0% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+  100% { opacity: 0.6; transform: translateY(0); }
+}
+
+
+@keyframes avisoRespira {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.porta.afk {
+  animation: portaPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes portaPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+
+.tremer {
+  animation: placaTremer 0.3s ease-in-out infinite;
+}
+
+@keyframes placaTremer {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+
+
+
+
+
+/* Cursor */
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background: black;
+  margin-left: 4px;
+  animation: piscar 1s infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+
+/* Zoom */
+.porta.zoom {
+  transform: scale(1.4);
+  transition: transform 0.8s ease;
+}
+
+/* Abrir porta */
+.porta.aberta .esquerda {
+  transform: rotateY(-90deg);
+}
+
+.porta.aberta .direita {
+  transform: rotateY(90deg);
+}
+
+.folha {
+  transition: transform 0.8s ease;
+  transform-origin: left;
+}
+
+.direita {
+  transform-origin: right;
+}
+
+/* Fade preto */
+.fade {
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 999;
+}
+
+.fade.ativo {
+  opacity: 1;
+  pointer-events: auto;
+  /* 👈 só ativa quando estiver preto */
+}
+
+
+#fluxo {
+
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  overflow-y: auto;
+
+  padding-top: 60px;
+  
+}
+
+#fluxo.ativo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#fluxo::-webkit-scrollbar {
+  width: 6px;
+}
+
+#fluxo::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.conteudo-direita {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.enfermeira {
+  font-size: 180px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15));
+  animation: respirar 4s ease-in-out infinite;
+}
+
+@keyframes respirar {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.enfermeira.digitando {
+  animation: falar 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes falar {
+  from { transform: translateY(-4px) scale(1.03); }
+  to   { transform: translateY(-8px) scale(1.06); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.enfermeira-container {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#enfermeiraSVG {
+  width: 100%;
+}
+
+/* Respiração */
+#corpo {
+  animation: respirar 3s ease-in-out infinite;
+}
+
+@keyframes respirar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(3px); }
+  100% { transform: translateY(0px); }
+}
+
+
+#cabeca {
+  animation: cabecaLeve 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes cabecaLeve {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  .cena {
+    padding: 30px;
+    gap: 30px;
+  }
+
+  .enfermeira-container {
+    width: 140px;
+  }
+
+  .balao {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .balao::before {
+    left: -15px;
+    top: 40px;
+    border-right: 15px solid #cccccc;
+  }
+
+}
